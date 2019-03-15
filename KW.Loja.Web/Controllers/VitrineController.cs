@@ -7,18 +7,19 @@ using System.Web.Mvc;
 
 namespace KW.Loja.Web.Controllers
 {
-    public class ProdutosController : Controller
+    public class VitrineController : Controller
     {
 
         private ProdutosRepository _repositorio;
 
-        // GET: Produtos
+        // GET: Vitrine
         public ActionResult Index()
         {
             _repositorio = new ProdutosRepository();
-            var produtos = _repositorio.Produtos.Take(10);
+            var produtos = _repositorio.Produtos;
 
-            return View(produtos);
+
+            return View();
         }
     }
 }
