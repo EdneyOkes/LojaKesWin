@@ -11,15 +11,23 @@ namespace KW.Loja.Web.Controllers
     {
 
         private ProdutosRepository _repositorio;
+        public int ProdutosPorPagina = 5;
 
         // GET: Vitrine
-        public ActionResult Index()
+        public ActionResult ListaProdutos(int pagina = 1)
+
         {
             _repositorio = new ProdutosRepository();
-            var produtos = _repositorio.Produtos;
+            var produtos = _repositorio.Produtos
+            .OrderBy(p => p.Descricao)
+            .Skip((pagina - 1) * ProdutosPorPagina)
+            .Take(ProdutosPorPagina);
 
 
-            return View();
+
+
+            return View(produtos);
         }
+
     }
 }
